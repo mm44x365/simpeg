@@ -67,7 +67,7 @@ check_session('member');
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a href="<?= base_url() ?>" class="brand-link">
-				<span class="brand-text font-weight-light"><?= $web_info['title'] ?></span>
+				<span class="brand-text font-weight-light"><?= $web_info['title'] ?> Desa Sungapan</span>
 			</a>
 			<!-- Sidebar -->
 			<div class="sidebar">

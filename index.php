@@ -8,7 +8,7 @@ require 'header.php';
     <div class="container">
         <div class="row">
             <div class="col-xl-9 mx-auto">
-                <h2 class="mb-4">Cari Subtitle!</h2>
+                <h2 class="mb-4">Cari Pengaduan</h2>
             </div>
             <div class="col-xl-10   mx-auto mb-3">
                 <form action="index.php" method="get">
@@ -17,7 +17,7 @@ require 'header.php';
                             <?php
                             //$passSearch = $connect->real_escape_string(filter($_GET['searchSubtitle']));
                             ?>
-                            <input type="text" name="searchSubtitle" class="form-control form-control-lg" placeholder="Nama Film...">
+                            <input type="text" name="searchSubtitle" class="form-control form-control-lg" placeholder="Masukan kode pengaduan">
                         </div>
                         <div class="col-12 col-md-3">
                             <button type="submit" value="search" class="btn btn-block btn-lg btn-primary"><i class="fas fa-search"></i> Cari</button>
