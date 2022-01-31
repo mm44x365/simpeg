@@ -66,6 +66,9 @@ if (isset($_POST['edit_data'])) {
 	$idUser = $connect->real_escape_string(filter($_POST['idUser']));
 	$realUsername = $connect->real_escape_string(filter($_POST['realUsername']));
 	$username = $connect->real_escape_string(filter($_POST['username']));
+	$fullname = $connect->real_escape_string(filter($_POST['fullname']));
+	$nik = $connect->real_escape_string(filter($_POST['nik']));
+	$address = $connect->real_escape_string(filter($_POST['address']));
 	$role = $connect->real_escape_string(filter($_POST['role']));
 	$is_active = $connect->real_escape_string(filter($_POST['is_active']));
 
@@ -76,14 +79,14 @@ if (isset($_POST['edit_data'])) {
 		$checkUsername = $connect->query("SELECT * FROM user WHERE username = '$username'");
 		if ($checkUsername->num_rows > 0) {
 			$_SESSION['notification'] = array('alert' => 'danger', 'title' => 'Gagal', 'message' => 'Email <strong>(' . $username . ')</strong> Sudah terdaftar.');
-		} elseif ($connect->query("UPDATE user SET username = '$username', role = '$role', is_active = '$is_active' WHERE id = '$idUser'") == true) {
+		} elseif ($connect->query("UPDATE user SET username = '$username', fullname = '$fullname', nik = '$nik', address = '$address', role = '$role', is_active = '$is_active' WHERE id = '$idUser'") == true) {
 			echo $username, $role, $is_active;
 			$_SESSION['notification'] = array('alert' => 'success', 'title' => 'Berhasil', 'message' => 'Data berhasil diubah.');
 		} else {
 			$_SESSION['notification'] = array('alert' => 'danger', 'title' => 'Gagal', 'message' => 'Fatal error!' . mysqli_error($connect));
 		}
 	} else {
-		if ($connect->query("UPDATE user SET username = '$username', role = '$role', is_active = '$is_active' WHERE id = '$idUser'") == true) {
+		if ($connect->query("UPDATE user SET username = '$username', fullname = '$fullname', nik = '$nik', address = '$address', role = '$role', is_active = '$is_active' WHERE id = '$idUser'") == true) {
 			echo $username, $role, $is_active;
 			$_SESSION['notification'] = array('alert' => 'success', 'title' => 'Berhasil', 'message' => 'Data berhasil diubah.');
 		} else {
@@ -174,7 +177,7 @@ if (isset($_POST['edit_password'])) {
 										<th>Username</th>
 										<th>Nama Lengkap</th>
 										<th>Alamat</th>
-										<!-- <th>Role</th> -->
+										<th>Role</th>
 										<th>Status</th>
 										<th>Last IP</th>
 										<th>Action</th>
@@ -191,15 +194,15 @@ if (isset($_POST['edit_password'])) {
 											<td><?= $dataUsers['username'] ?></td>
 											<td><?= $dataUsers['fullname'] ?></td>
 											<td><?= $dataUsers['address'] ?></td>
-											<!-- <td>
+											<td>
 												<?php
 												if ($dataUsers['role'] == 1) {
 													echo "Admin";
 												} else {
-													echo "Member";
+													echo "Karyawan";
 												}
 												?>
-											</td> -->
+											</td>
 											<td>
 												<?php
 												if ($dataUsers['is_active'] == 1) {
@@ -226,7 +229,7 @@ if (isset($_POST['edit_password'])) {
 																	<div class="input-group mb-3">
 																		<input type="text" name="idUser" value="<?= $dataUsers['id'] ?>" hidden>
 																		<input type="text" name="realUsername" value="<?= $dataUsers['username'] ?>" hidden>
-																		<input type="text" name="username" class="form-control" placeholder="Nama Admin" value="<?= $dataUsers['username'] ?>">
+																		<input type="text" name="username" class="form-control" placeholder="Username" value="<?= $dataUsers['username'] ?>" required>
 																		<div class="input-group-append">
 																			<div class="input-group-text">
 																				<span class="fa fa-id-card"></span>
@@ -234,17 +237,34 @@ if (isset($_POST['edit_password'])) {
 																		</div>
 																	</div>
 																	<div class="input-group mb-3">
-																		<input type="text" name="nik" class="form-control" placeholder="NIK" required>
+																		<input type="text" name="fullname" class="form-control" placeholder="Nama Lengkap" value="<?= $dataUsers['fullname'] ?>" required>
 																		<div class="input-group-append">
+																			<div class="input-group-text">
+																				<span class="fa fa-id-card"></span>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="input-group mb-3">
+																		<input type="text" name="nik" class="form-control" placeholder="NIK" value="<?= $dataUsers['nik'] ?>" required>
+																		<div class=" input-group-append">
 																			<div class="input-group-text">
 																				<span class="fas fa-address-card"></span>
 																			</div>
 																		</div>
 																	</div>
 																	<div class="input-group mb-3">
+																		<textarea name="address" id="address" class="form-control" cols="30" rows="10" required><?= $dataUsers['address'] ?></textarea>
+																		<!-- <input type="text" name="fullname" class="form-control" placeholder="Nama Lengkap"> -->
+																		<div class="input-group-append">
+																			<div class="input-group-text">
+																				<span class="fas fa-map-marked-alt"></span>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="input-group mb-3">
 																		<select class="form-control" value="<?= $dataUsers['role'] ?>" name="role">
 																			<option <?php if ($dataUsers['role'] == 1) { ?>selected="true" <?php } ?> value="1">Admin</option>
-																			<option <?php if ($dataUsers['role'] == 2) { ?>selected="true" <?php } ?> value="2">Member</option>
+																			<option <?php if ($dataUsers['role'] == 2) { ?>selected="true" <?php } ?> value="2">Karyawan</option>
 																		</select>
 																	</div>
 																	<div class="input-group mb-3">
@@ -344,7 +364,7 @@ if (isset($_POST['edit_password'])) {
 										<th>Username</th>
 										<th>Nama Lengkap</th>
 										<th>Alamat</th>
-										<!-- <th>Role</th> -->
+										<th>Role</th>
 										<th>Status</th>
 										<th>Last IP</th>
 										<th>Action</th>

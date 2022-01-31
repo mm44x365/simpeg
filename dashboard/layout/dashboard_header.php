@@ -97,7 +97,7 @@ check_session('member');
 									echo "active";
 								} ?>">
 									<i class="nav-icon fas fa-users-cog"></i>
-									<p>Users Management</p>
+									<p>Data Karyawan</p>
 								</a>
 							</li>
 							<!-- <li class="nav-item">
