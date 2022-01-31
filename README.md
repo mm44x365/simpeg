@@ -1,2 +1,3 @@
-# subsku
-FUngsi utama aplikasi adalah upload dan download subtitle
+# SIMPEG
+- Manajemen data karyawan
+- Manajemen pengaduan
