@@ -86,7 +86,7 @@ if (isset($_POST['edit_data'])) {
 			$_SESSION['notification'] = array('alert' => 'danger', 'title' => 'Gagal', 'message' => 'Fatal error!' . mysqli_error($connect));
 		}
 	} else {
-		if ($connect->query("UPDATE user SET username = '$username', fullname = '$fullname', nik = '$nik', address = '$address', role = '$role', is_active = '$is_active' WHERE id = '$idUser'") == true) {
+		if ($connect->query("UPDATE user SET username = '$username', fullname = '$fullname', nik = '$nik', address = '$address',  role = '$role', is_active = '$is_active' WHERE id = '$idUser'") == true) {
 			echo $username, $role, $is_active;
 			$_SESSION['notification'] = array('alert' => 'success', 'title' => 'Berhasil', 'message' => 'Data berhasil diubah.');
 		} else {
@@ -232,7 +232,7 @@ if (isset($_POST['edit_password'])) {
 																		<input type="text" name="username" class="form-control" placeholder="Username" value="<?= $dataUsers['username'] ?>" required>
 																		<div class="input-group-append">
 																			<div class="input-group-text">
-																				<span class="fa fa-id-card"></span>
+																				<span class="fa fa-user"></span>
 																			</div>
 																		</div>
 																	</div>
@@ -240,11 +240,11 @@ if (isset($_POST['edit_password'])) {
 																		<input type="text" name="fullname" class="form-control" placeholder="Nama Lengkap" value="<?= $dataUsers['fullname'] ?>" required>
 																		<div class="input-group-append">
 																			<div class="input-group-text">
-																				<span class="fa fa-id-card"></span>
+																				<span class="fa fa-user"></span>
 																			</div>
 																		</div>
 																	</div>
-																	<div class="input-group mb-3">
+																	<div class=" input-group mb-3">
 																		<input type="text" name="nik" class="form-control" placeholder="NIK" value="<?= $dataUsers['nik'] ?>" required>
 																		<div class=" input-group-append">
 																			<div class="input-group-text">
