@@ -1,0 +1,52 @@
+Options -Indexes
+Options All -Indexes
+IndexIgnore *
+
+#Header append X-FRAME-OPTIONS "DENY"
+
+RewriteEngine On
+RewriteCond %{HTTP} off
+RewriteRule ^(.*)$ http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteEngine On
+RewriteRule ^.well-known(.*)$ - [L,NC]
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+
+#MODUL_INDEX
+#RewriteRule ^/subtitle/([0-9]+)\.html /download_subtitle.php?slug=$1
+#RewriteRule ^/search/([0-9]+)\.html /index.php?searchSubtitle=$1
+RewriteRule download/subtitle/(.*) download_subtitle.php?slug=$1   
+
+
+#MODUL_AUTH
+RewriteRule    ^login/?$    auth/login.php    [NC,L] 
+RewriteRule    ^register/?$    auth/register.php    [NC,L] 
+RewriteRule    ^logout/?$    auth/logout.php    [NC,L] 
+RewriteRule    ^check/?$    auth/check_session.php    [NC,L] 
+
+#MODUL_DASHBOARD
+RewriteRule    ^account/settings/?$    dashboard/account_settings.php    [NC,L] 
+RewriteRule    ^user-management/?$    dashboard/a_users-management.php    [NC,L] 
+
+#MODUL_SUBTITLE
+RewriteRule    ^subtitle/new/?$    dashboard/add_subtitle.php    [NC,L] 
+RewriteRule    ^manage/subtitle/?$    dashboard/a_subtitle-management.php    [NC,L] 
+
+
+</IfModule>
+
+<files config.php>
+order allow,deny
+deny from all
+</files>
+
+php_value memory_limit 512M
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>

@@ -1,0 +1,137 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 13, 2020 at 06:55 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `subskuy`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subtitle`
+--
+
+CREATE TABLE `subtitle` (
+  `id` int(11) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `slug` varchar(254) NOT NULL,
+  `file_name` text NOT NULL,
+  `author` varchar(128) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `subtitle`
+--
+
+INSERT INTO `subtitle` (`id`, `name`, `slug`, `file_name`, `author`, `date`) VALUES
+(1, 'Harry Potter', 'harry-potter-1607834548', 'harry-potter-1607834548.maxtkj.Subskuyy.zip', 'maxtkj', '2020-12-13 11:42:28'),
+(2, 'One Piece', 'one-piece-1607834568', 'one-piece-1607834568.maxtkj.Subskuyy.zip', 'maxtkj', '2020-12-13 11:42:48'),
+(4, 'One Piece', 'one-piece-1607838520', 'one-piece-1607838520.maxtkj.Subskuyy.zip', 'maxtkj', '2020-12-13 12:48:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(32) NOT NULL,
+  `password` text NOT NULL,
+  `role` enum('1','2') NOT NULL DEFAULT '2',
+  `is_active` enum('0','1') NOT NULL DEFAULT '1',
+  `last_login_ip` varchar(20) NOT NULL DEFAULT 'Never'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `is_active`, `last_login_ip`) VALUES
+(1, 'maxtkj', '$2y$10$UmuY4NJjX6aKr66E3JGfKue.LhxSPfSfEKkiDrlR04IiWqchSpc2.', '2', '1', '127.0.0.1'),
+(4, 'adminganteng', '$2y$10$UmuY4NJjX6aKr66E3JGfKue.LhxSPfSfEKkiDrlR04IiWqchSpc2.', '1', '1', '127.0.0.1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `web_info`
+--
+
+CREATE TABLE `web_info` (
+  `id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `web_info`
+--
+
+INSERT INTO `web_info` (`id`, `title`, `description`) VALUES
+(1, 'Subskuyy', 'Ini deskripsinya subskuy yaaa, mpsh ah');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `subtitle`
+--
+ALTER TABLE `subtitle`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `web_info`
+--
+ALTER TABLE `web_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `subtitle`
+--
+ALTER TABLE `subtitle`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `web_info`
+--
+ALTER TABLE `web_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
